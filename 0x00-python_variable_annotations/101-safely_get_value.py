@@ -2,7 +2,6 @@
 """ Type-annotated function safe_first_element"""
 from typing import Union, Any, Mapping, TypeVar
 
-
 T = TypeVar('T')
 
 
