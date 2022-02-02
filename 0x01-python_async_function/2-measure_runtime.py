@@ -9,6 +9,6 @@ async def measure_time(n: int, max_delay: int) -> float:
     """ Function that measures the total execution time for wait_n"""
     t1 = perf_counter()
     asyncio.run(wait_n(n, max_delay))
-    t2 = perf_counter()
+    t2 = perf_counter() - t1
 
-    return (t2 - t1)
+    return t2
