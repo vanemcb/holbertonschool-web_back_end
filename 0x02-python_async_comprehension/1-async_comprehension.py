@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-""" Coroutine called async_generator """
+""" Coroutine called async_comprehension """
 from typing import List
 async_generator = __import__('0-async_generator').async_generator
 
