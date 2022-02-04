@@ -5,7 +5,7 @@ BaseCaching = __import__('base_caching').BaseCaching
 
 
 class BasicCache(BaseCaching):
-
+    """ Class BasicCache  """
     def put(self, key, item):
         if key != None and item != None:
             self.cache_data[key] = item
