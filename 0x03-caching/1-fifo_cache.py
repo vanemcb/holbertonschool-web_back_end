@@ -1,10 +1,11 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """ FIFOCache module
 """
 BaseCaching = __import__('base_caching').BaseCaching
 
 
 class FIFOCache(BaseCaching):
+    """ Class FIFOCache """
 
     def __init__(self) -> None:
         """Initialiaze the class"""
