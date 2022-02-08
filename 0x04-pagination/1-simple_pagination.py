@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-""" Module function index_range """
+"""
+Module function index_range
+"""
 
 import csv
 import math
