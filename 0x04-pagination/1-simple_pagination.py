@@ -11,7 +11,7 @@ def index_range(page: int, page_size: int) -> tuple:
 
     index = (page - 1) * page_size
     end_index = index + page_size
-    return (index, end_index)
+    return index, end_index
 
 
 class Server:
@@ -50,4 +50,4 @@ class Server:
             for i in range(index, end_index):
                 array_rows.append(array_data[i])
 
-            return(array_rows)
+            return array_rows
