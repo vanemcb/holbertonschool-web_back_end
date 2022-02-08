@@ -35,11 +35,8 @@ class Server:
             """ Function that returns the range of rows """
             assert(type(page) == int and page > 0)
             assert(type(page_size) == int and page_size > 0)
-            index, end_index = index_range(page, page_size)
-            array_rows = []
+            index = index_range(page, page_size)
             array_data = self.dataset()
-            if index > len(array_data):
+            if index[0] > len(array_data):
                 return []
-            for i in range(index, end_index):
-                array_rows.append(array_data[i])
-            return array_rows
+            return array_data[index[0]:index[1]]
