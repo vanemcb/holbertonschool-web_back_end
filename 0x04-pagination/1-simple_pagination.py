@@ -6,13 +6,7 @@ import math
 from typing import List
 
 
-def index_range(page: int, page_size: int) -> tuple:
-    """ Function that takes two integer arguments and return
-    a tuple of size two containing a start index and an end index """
-
-    index = (page - 1) * page_size
-    end_index = index + page_size
-    return index, end_index
+index_range = __import__('0-simple_helper_function').index_range
 
 
 class Server:
