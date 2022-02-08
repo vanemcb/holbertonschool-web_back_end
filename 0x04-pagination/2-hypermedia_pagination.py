@@ -43,21 +43,20 @@ class Server:
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """ Function that returns a dictionary """
-        if page != len(self.dataset()):
-            next_p = page + 1
-        else:
+        if page > len(self.get_page(page, page_size)):
             next_p = None
-
-        if page != 0 and page != 1:
-            prev_p = page - 1
         else:
+            next_p = page + 1
+
+        if page <= 1:
             prev_p = None
+        else:
+            prev_p = page - 1
 
         dict_hyper = {"page_size": len(self.get_page(page, page_size)),
                       "page": page,
                       "data": self.get_page(page, page_size),
                       "next_page": next_p,
                       "prev_page": prev_p,
-                      "total_pages": round(len(self.dataset()) / page_size)}
-
+                      "total_pages": math.ceil(len(self.dataset()) / page_size)}
         return dict_hyper
