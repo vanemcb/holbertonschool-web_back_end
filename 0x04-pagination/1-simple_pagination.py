@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """ Module function index_range """
+
 import csv
 import math
 from typing import List
@@ -37,8 +38,8 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
             """ Function that returns the range of rows
             """
-            assert type(page) == int and page > 0
-            assert type(page_size) == int and page_size > 0
+            assert(type(page) == int and page > 0)
+            assert(type(page_size) == int and page_size > 0)
             index, end_index = index_range(page, page_size)
 
             if index > 19419 or end_index > 19419:
