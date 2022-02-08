@@ -32,19 +32,14 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            """ Function that returns the range of rows
-            """
+            """ Function that returns the range of rows """
             assert(type(page) == int and page > 0)
             assert(type(page_size) == int and page_size > 0)
             index, end_index = index_range(page, page_size)
-
             if index > 19419 or end_index > 19419:
                 return []
-
             array_rows = []
             array_data = self.dataset()
-
             for i in range(index, end_index):
                 array_rows.append(array_data[i])
-
             return array_rows
