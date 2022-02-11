@@ -32,14 +32,14 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            """ Function that returns the range of rows """
-            assert(type(page) == int and page > 0)
-            assert(type(page_size) == int and page_size > 0)
-            index, end_index = index_range(page, page_size)
-            array_data = self.dataset()
-            if index > len(array_data):
-                return []
-            return array_data[index:end_index]
+        """ Function that returns the range of rows """
+        assert(type(page) == int and page > 0)
+        assert(type(page_size) == int and page_size > 0)
+        index, end_index = index_range(page, page_size)
+        array_data = self.dataset()
+        if index > len(array_data):
+            return []
+        return array_data[index:end_index]
 
     def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """ Function that returns a dictionary """
