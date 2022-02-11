@@ -58,5 +58,6 @@ class Server:
                       "data": self.get_page(page, page_size),
                       "next_page": next_p,
                       "prev_page": prev_p,
-                      "total_pages": math.ceil(len(self.dataset()) / page_size)}
+                      "total_pages": math.ceil(
+                          len(self.dataset()) / page_size)}
         return dict_hyper
