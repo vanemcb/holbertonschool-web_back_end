@@ -3,6 +3,7 @@
 from typing import List
 import re
 import logging
+import time
 
 
 class RedactingFormatter(logging.Formatter):
@@ -19,13 +20,9 @@ class RedactingFormatter(logging.Formatter):
 
     def format(self, record: logging.LogRecord) -> str:
         " Method to filter values in incoming log records using filter_datum "
-        record.msg = filter_datum(
-            self.fields, self.REDACTION, record.msg, self.SEPARATOR)
-        test_dict = {'name': record.name,
-                     'levelname': record.levelname,
-                     'asctime': record.asctime,
-                     'message': record.msg}
-        return self.FORMAT % test_dict
+
+        return filter_datum(self.fields, self.REDACTION,
+                            super().format(record), self.SEPARATOR)
 
 
 def filter_datum(
