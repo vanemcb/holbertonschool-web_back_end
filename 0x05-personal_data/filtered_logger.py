@@ -38,6 +38,7 @@ def filter_datum(
 
     return message
 
+
 def get_logger() -> logging.Logger:
     """ Function that returns a logging.Logger object """
 
