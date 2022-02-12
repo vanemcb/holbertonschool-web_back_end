@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """ Module function filter_datum """
 from typing import List
-import re, logging, os, mysql.connector
+import re
+import logging
+import os
+import mysql.connector
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
@@ -50,6 +53,7 @@ def get_logger() -> logging.Logger:
 
     return log
 
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """ Function that returns a connector to the database """
 
@@ -59,6 +63,6 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     db_name = os.getenv('PERSONAL_DATA_DB_NAME')
 
     db_cxn = mysql.connector.connect(user=user, password=password,
-                              host=host, database=db_name)
+                                     host=host, database=db_name)
 
     return db_cxn
