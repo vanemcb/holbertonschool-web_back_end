@@ -8,6 +8,6 @@ def hash_password(password: str) -> str:
     which is a byte string """
 
     salt = bcrypt.gensalt()
-    hashed = bcrypt.hashpw(password, salt)
+    hashed = bcrypt.hashpw(str.encode(password), salt)
 
     return hashed
