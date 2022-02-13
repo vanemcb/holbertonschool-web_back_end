@@ -66,3 +66,14 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
                                      host=host, database=db_name)
 
     return db_cxn
+
+
+def main():
+    """ Main function """
+
+    db_cxn = get_db()
+    users = db_cxn.cursor()
+    users.execute()
+
+if __name__ == "__main__":
+    main()
