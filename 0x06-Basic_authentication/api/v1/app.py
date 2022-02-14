@@ -2,16 +2,39 @@
 """
 Route module for the API
 """
-from os import getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
-import os
+from os import getenv
 
 
 app = Flask(__name__)
 app.register_blueprint(app_views)
 CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
+auth = None
+
+if getenv('AUTH_TYPE') == 'auth':
+    from api.v1.auth.auth import Auth
+    auth = Auth()
+
+
+@app.before_request
+def be_request():
+    """ Before request method
+    """
+    if auth is None:
+        pass
+
+    if auth.require_auth(request.path, ['/api/v1/status/',
+                                        '/api/v1/unauthorized/',
+                                        '/api/v1/forbidden/']) is True:
+        pass
+
+    if auth.authorization_header(request) is None:
+        raise abort(401)
+
+    if auth.current_user(request) is None:
+        raise abort(403)
 
 
 @app.errorhandler(404)
