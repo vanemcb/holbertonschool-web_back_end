@@ -2,10 +2,10 @@
 """
 Route module for the API
 """
+from os import getenv
 from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
-from os import getenv
 
 
 app = Flask(__name__)
@@ -23,18 +23,18 @@ def be_request():
     """ Before request method
     """
     if auth is None:
-        pass
+        return
 
-    if auth.require_auth(request.path, ['/api/v1/status/',
-                                        '/api/v1/unauthorized/',
-                                        '/api/v1/forbidden/']) is True:
-        pass
+    excluded_paths = ['/api/v1/status/',
+                      '/api/v1/unauthorized/',
+                      '/api/v1/forbidden/']
 
+    if not auth.require_auth(request.path, excluded_paths):
+        return
     if auth.authorization_header(request) is None:
-        raise abort(401)
-
+        abort(401)
     if auth.current_user(request) is None:
-        raise abort(403)
+        abort(403)
 
 
 @app.errorhandler(404)
@@ -61,4 +61,4 @@ def access_forbidden(error) -> str:
 if __name__ == "__main__":
     host = getenv("API_HOST", "0.0.0.0")
     port = getenv("API_PORT", "5000")
-    app.run(host=host, port=port)
+    app.run(host=host, port=port, debug=True)

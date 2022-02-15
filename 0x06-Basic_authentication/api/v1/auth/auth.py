@@ -24,13 +24,14 @@ class Auth():
         else:
             return True
 
-
     def authorization_header(self, request=None) -> str:
         """ Public method authorization_header """
 
         if request is None:
             return None
-
+        if not request.headers.get("Authorization"):
+            return None
+        return request.headers.get("Authorization")
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ Public method current_user """
