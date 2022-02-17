@@ -26,6 +26,9 @@ if getenv('AUTH_TYPE') == 'basic_auth':
 def be_request():
     """ Before request method
     """
+
+    request.current_user = auth.current_user(request)
+
     if auth is None:
         return
 
