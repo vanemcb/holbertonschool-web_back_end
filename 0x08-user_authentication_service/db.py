@@ -48,3 +48,12 @@ class DB:
         if row is None:
             raise NoResultFound
         return row
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """Method that takes as argument a required user_id integer
+        and arbitrary keyword arguments, and returns None
+        """
+        user = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            setattr(user, key, value)
+        self._session.commit()
