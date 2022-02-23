@@ -19,18 +19,13 @@ def message() -> str:
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
 def create_user() -> str:
-    """ POST users/
-    JSON body:
-      - email
-      - password
-    Return:
-      - User object JSON represented
-      - 400 if can't create the new User
+    """ Method that creates new user
     """
     try:
-        req = request.get_json()
-        AUTH.register_user(req.get('email'), req.get('password'))
-        return jsonify({"email": req.get('email'), "message": "user created"})
+        AUTH.register_user(
+            request.form.get('email'), request.form.get('password'))
+        return jsonify(
+            {"email": request.form.get('email'), "message": "user created"})
     except Exception:
         return jsonify({"message": "email already registered"}), 400
 
