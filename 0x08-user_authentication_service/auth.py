@@ -16,11 +16,13 @@ class Auth:
     def register_user(self, email: str, password: str) -> User:
         """Method that checks if a user already exists
         """
-        user = self._db.find_user_by(email=email)
-        if user is not None:
+        try:
+            user = self._db.find_user_by(email=email)
             raise ValueError('User {} already exists'.format(email))
-        passw = _hash_password(password)
-        return self._db.add_user(email, passw)
+        except Exception:
+            passw = _hash_password(password)
+            return self._db.add_user(email, passw)
+
 
 def _hash_password(password: str) -> bytes:
     """ Function that returns a salted, hashed password,
