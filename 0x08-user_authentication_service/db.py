@@ -14,7 +14,6 @@ from typing import TypeVar
 class DB:
     """DB class
     """
-
     def __init__(self) -> None:
         """Initialize a new DB instance
         """
