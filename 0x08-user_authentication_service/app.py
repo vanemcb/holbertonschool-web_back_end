@@ -18,7 +18,7 @@ def message() -> str:
 
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
-def create_user() -> str:
+def create_user():
     """ POST users/
     JSON body:
       - email
@@ -30,7 +30,7 @@ def create_user() -> str:
     try:
         req = request.get_json()
         AUTH.register_user(req.get('email'), req.get('password'))
-        return jsonify({"email": email, "message": "user created"})
+        return jsonify({"email": req.get('email'), "message": "user created"})
     except Exception:
         return jsonify({"message": "email already registered"}), 400
 
