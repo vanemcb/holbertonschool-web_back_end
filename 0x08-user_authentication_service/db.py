@@ -40,22 +40,22 @@ class DB:
         self._session.commit()
         return user
 
-    # def find_user_by(self, **kwargs) -> User:
-    #     """Returns the first row found in the users table as
-    #     filtered by the method's input arguments
-    #     """
-    #     if kwargs is None:
-    #         raise InvalidRequestError
-    #     row = self._session.query(User).filter_by(**kwargs).first()
-    #     if row is None:
-    #         raise NoResultFound
-    #     return row
+    def find_user_by(self, **kwargs) -> User:
+        """Returns the first row found in the users table as
+        filtered by the method's input arguments
+        """
+        if kwargs is None:
+            raise InvalidRequestError
+        row = self._session.query(User).filter_by(**kwargs).first()
+        if row is None:
+            raise NoResultFound
+        return row
 
-    # def update_user(self, user_id: int, **kwargs) -> None:
-    #     """Method that takes as argument a required user_id integer
-    #     and arbitrary keyword arguments, and returns None
-    #     """
-    #     user = self.find_user_by(id=user_id)
-    #     for key, value in kwargs.items():
-    #         setattr(user, key, value)
-    #     self._session.commit()
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """Method that takes as argument a required user_id integer
+        and arbitrary keyword arguments, and returns None
+        """
+        user = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            setattr(user, key, value)
+        self._session.commit()
