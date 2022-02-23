@@ -18,7 +18,7 @@ def message() -> str:
 
 
 @app.route('/users', methods=['POST'], strict_slashes=False)
-def create_user():
+def create_user() -> str:
     """ POST users/
     JSON body:
       - email
