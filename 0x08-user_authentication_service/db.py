@@ -8,7 +8,6 @@ from sqlalchemy.orm.session import Session
 from user import Base, User
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm.exc import NoResultFound
-from typing import TypeVar
 
 
 class DB:
@@ -31,7 +30,7 @@ class DB:
             self.__session = DBSession()
         return self.__session
 
-    def add_user(self, email: str, hashed_password: str) -> TypeVar('User'):
+    def add_user(self, email: str, hashed_password: str) -> User:
         """Method that saves the user to the database
         """
         user = User(email=email, hashed_password=hashed_password)
