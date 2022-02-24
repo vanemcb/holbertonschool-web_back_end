@@ -47,6 +47,7 @@ class Auth:
         except NoResultFound:
             return None
 
+
 def _hash_password(password: str) -> bytes:
     """Function that returns a salted, hashed password,
     which is a byte string
