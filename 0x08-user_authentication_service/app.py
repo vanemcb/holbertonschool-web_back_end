@@ -2,7 +2,7 @@
 """
 Route module for the API
 """
-from flask import Flask, jsonify, request, abort
+from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
 
@@ -32,7 +32,7 @@ def create_user() -> str:
 
 @app.route('/sessions', methods=['POST'], strict_slashes=False)
 def login() -> str:
-    """ Method that creates asession
+    """ Method that creates a session
     """
     email = request.form.get('email')
     password = request.form.get('password')
@@ -44,6 +44,19 @@ def login() -> str:
         return response
     else:
         abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """ Method that deletes a user
+    """
+    session_id = request.cookies.get('session_id')
+    try:
+        user = AUTH.get_user_from_session_id(session_id)
+        AUTH.destroy_session(user.id)
+    except Exception:
+        abort(403)
+    return redirect('/')
 
 
 if __name__ == "__main__":
