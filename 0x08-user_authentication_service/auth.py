@@ -26,7 +26,7 @@ class Auth:
             return self._db.add_user(email, passw)
 
     def valid_login(self, email: str, password: str) -> bool:
-        """Function that locates a user by email and checks
+        """Method that locates a user by email and checks
         the password
         """
         try:
@@ -37,6 +37,15 @@ class Auth:
         except NoResultFound:
             return False
 
+    def create_session(self, email: str) -> str:
+        """Method that generate a session ID and store it in the database
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+            self._db.update_user(user.id, session_id=_generate_uuid())
+            return user.session_id
+        except NoResultFound:
+            return None
 
 def _hash_password(password: str) -> bytes:
     """Function that returns a salted, hashed password,
