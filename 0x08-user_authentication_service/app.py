@@ -60,13 +60,25 @@ def logout():
 
 
 @app.route('/profile', methods=['GET'], strict_slashes=False)
-def profilet():
+def profile():
     """ Method that looks for user by session ID
     """
     session_id = request.cookies.get('session_id')
     try:
         user = AUTH.get_user_from_session_id(session_id)
         return jsonify({"email": user.email}), 200
+    except Exception:
+        abort(403)
+
+
+@app.route('/reset_password', methods=['POST'], strict_slashes=False)
+def get_reset_password_token():
+    """ Method that generates a token
+    """
+    email = request.form.get('email')
+    try:
+        token = AUTH.get_reset_password_token(email)
+        return jsonify({"email": email, "reset_token": token}), 200
     except Exception:
         abort(403)
 
