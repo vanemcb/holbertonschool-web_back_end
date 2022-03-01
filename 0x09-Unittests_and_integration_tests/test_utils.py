@@ -60,6 +60,7 @@ class TestMemoize(TestCase):
         """
         class TestClass:
             """Class TestClass"""
+
             def a_method(self):
                 """Method a_method"""
                 return 42
