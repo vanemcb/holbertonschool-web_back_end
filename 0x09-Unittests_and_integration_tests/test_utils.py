@@ -2,6 +2,7 @@
 """Test utils module
 """
 from unittest import TestCase
+import unittest
 from parameterized import parameterized
 from utils import access_nested_map
 
@@ -24,6 +25,10 @@ class TestAccessNestedMap(TestCase):
         ({"a": 1}, ("a", "b"))
     ])
     def test_access_nested_map_exception(self, nested_map, path):
-        """Method that tests if a KEYError is raised
+        """Method that tests if a KeyError is raised
         """
         self.assertRaises(KeyError, access_nested_map, nested_map, path)
+
+
+if __name__ == '__main__':
+    unittest.main()
