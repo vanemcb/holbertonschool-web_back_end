@@ -2,7 +2,7 @@
 """Test utils module
 """
 from unittest import TestCase
-from unittest.mock import patch
+from unittest.mock import patch, Mock
 import unittest
 from parameterized import parameterized
 from utils import access_nested_map, get_json
