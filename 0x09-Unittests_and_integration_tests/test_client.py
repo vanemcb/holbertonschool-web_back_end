@@ -3,7 +3,7 @@
 """
 from unittest import TestCase
 from parameterized import parameterized
-from unittest.mock import patch
+from unittest.mock import patch, PropertyMock, Mock
 from client import GithubOrgClient
 
 
@@ -23,3 +23,12 @@ class TestGithubOrgClient(TestCase):
         test_return = test_client.org
         self.assertEqual(test_return, mock_get.return_value)
         mock_get.assert_called_once
+
+    def test_public_repos_url(self):
+        """Method that tests _public_repos_url
+        """
+        with patch(GithubOrgClient, new_callable=PropertyMock) as mock_last_transaction:
+        mock_last_transaction.return_value = Transaction()
+        myclass = MyClass()
+        print myclass.last_transaction
+        mock_last_transaction.assert_called_once_with()
