@@ -14,6 +14,7 @@ if __name__ == "__main__":
     count_patch = nginx_collection.count_documents({'method': 'PATCH'})
     count_del = nginx_collection.count_documents({'method': 'DELETE'})
     count_path = nginx_collection.count_documents({'path': '/status'})
+
     dict_methods = {'GET': count_get,
                     'POST': count_post,
                     'PUT': count_put,
