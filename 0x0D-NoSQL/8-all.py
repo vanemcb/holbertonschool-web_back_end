@@ -3,7 +3,6 @@
 """
 
 
-# if __name__ == "__main__":
 def list_all(mongo_collection):
     """Function that lists all documents in a collection
     """
