@@ -1,6 +1,7 @@
 export default function handleResponseFromAPI(promise) {
-  return promise
+  const result = promise
     .then(() => ({ status: 200, body: 'Success' }))
-    .catch(() => Error())
-    .finally(() => console.log('Got a response from the API'));
+    .catch(() => Error());
+  console.log('Got a response from the API');
+  return result;
 }
