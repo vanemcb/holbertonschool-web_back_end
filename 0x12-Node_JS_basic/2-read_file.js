@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const countStudents = (path) => {
+function countStudents(path) {
   try {
     const arrayLines = fs.readFileSync(path, { encoding: 'utf8' }).split('\n');
     arrayLines.shift();
