@@ -14,6 +14,7 @@ const app = http.createServer(async (req, res) => {
       res.end(error.message);
     }
   }
+
   res.end();
 });
 app.listen(1245);
